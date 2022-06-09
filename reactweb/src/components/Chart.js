@@ -75,7 +75,7 @@ const Chart = ({ staname, param, label, unit, color }) => {
         xAxis: {
             type: 'time',
             boundaryGap: false,
-            axisLine: { onZero: true },
+            axisLine: { onZero: false },
         },
         yAxis: {
             name: `${label}`,
@@ -88,8 +88,7 @@ const Chart = ({ staname, param, label, unit, color }) => {
         },
         series: [
             {
-                // name: 'Email',
-                // symbolSize: 8,
+                symbolSize: 0,
                 showSymbol: false,
                 type: 'line',
                 data: data,
@@ -99,11 +98,15 @@ const Chart = ({ staname, param, label, unit, color }) => {
     };
 
     return (
-        <ReactECharts
-            option={option}
-            style={{ height: '400px' }}
-            opts={{ renderer: 'svg' }}
-        />
+        <div className='shadow-sm p-3 mb-2 bg-body rounded'>
+            <div className='card-body'>
+                <ReactECharts
+                    option={option}
+                    style={{ height: '400px' }}
+                    opts={{ renderer: 'svg' }}
+                />
+            </div>
+        </div>
     )
 }
 
