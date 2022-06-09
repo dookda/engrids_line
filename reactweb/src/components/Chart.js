@@ -21,8 +21,6 @@ const Chart = ({ staname, param, label, unit, color }) => {
         })
     }, [staname])
 
-
-
     let option = {
         title: {
             text: `${label}`,
@@ -84,7 +82,7 @@ const Chart = ({ staname, param, label, unit, color }) => {
                 formatter: `{value} ${unit}`
             },
             nameLocation: 'middle',
-            nameGap: 45
+            nameGap: 48
         },
         series: [
             {

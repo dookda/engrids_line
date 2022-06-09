@@ -1,0 +1,39 @@
+version: '3.3'
+services:
+  nginx:
+    container_name: nginx-for-react
+    build: ./nginx
+    depends_on:
+      - nodejs
+      - react
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/html:/usr/share/nginx/html
+    # environment:
+    #   - NGINX_HOST=localhost
+    #   - NGINX_PORT=80
+  nodejs:
+    image: node
+    container_name: node-for-react
+    working_dir: /home/node/app
+    restart: always
+    ports:
+      - 3100:3100
+    volumes:
+      - ./nodejs:/home/node/app
+    environment:
+      - NODE_ENV=production
+    command: bash -c "npm i && npm i -g nodemon && nodemon server.js"
+  react:
+    image: node
+    container_name: react-web
+    working_dir: /home/react/app
+    restart: always
+    depends_on:
+      - nodejs
+    ports:
+      - 3000:3000
+    volumes:
+      - ./reactweb:/home/react/app
+    command: bash -c 'npm i && npm start'
