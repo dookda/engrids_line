@@ -1,0 +1,9 @@
+
+
+POST https://reqres.in/api/users
+Content-Type: application/json
+
+{
+    "name": "Hola",
+    "job": "programmer"
+}
