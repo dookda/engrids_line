@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Chart.css';
 import ReactECharts from 'echarts-for-react';
 import axios from 'axios'
+import moment from 'moment'
 
 const Chart = ({ staname, param, label, unit, color }) => {
     const [data, setData] = useState([])
@@ -14,11 +15,19 @@ const Chart = ({ staname, param, label, unit, color }) => {
         limit: 10000
     }
 
-    useEffect(() => {
+    let getData = () => {
         axios.post('https://eec-onep.soc.cmu.ac.th/api/wtrl-api.php', obj).then(res => {
-            let a = res.data.data.map(i => ([i.ts2, Number(i.val) * 1]))
+
+            let a = res.data.data.map(i => {
+                let ts = moment.utc(moment(i.ts2).subtract(7, 'hour')).format()
+                return [ts, Number(i.val) * 1]
+            })
             setData(a)
         })
+    }
+
+    useEffect(() => {
+        getData();
     }, [staname])
 
     let option = {
@@ -96,7 +105,7 @@ const Chart = ({ staname, param, label, unit, color }) => {
     };
 
     return (
-        <div className='shadow-sm p-3 mb-2 bg-body rounded'>
+        <div className='shadow-sm p-3 mb-3 bg-body rounded'>
             <div className='card-body'>
                 <ReactECharts
                     option={option}

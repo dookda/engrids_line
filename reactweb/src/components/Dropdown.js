@@ -10,7 +10,7 @@ const Dropdown = ({ setStaname }) => {
     }
 
     return (
-        <div className='shadow-sm p-3 mb-2 bg-body rounded'>
+        <div className='shadow-sm p-3 mb-3 bg-body rounded'>
             <div className='card-body'>
                 <select className='form-select'
                     value={selected}
