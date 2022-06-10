@@ -1,18 +1,15 @@
 version: '3.3'
 services:
-  nginx:
-    container_name: nginx-for-react
-    build: ./nginx
-    depends_on:
-      - nodejs
-      - react
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx/html:/usr/share/nginx/html
-    # environment:
-    #   - NGINX_HOST=localhost
-    #   - NGINX_PORT=80
+  # nginx:
+  #   container_name: nginx-for-react
+  #   build: ./nginx
+  #   depends_on:
+  #     - nodejs
+  #     - react
+  #   ports:
+  #     - "80:80"
+  #   volumes:
+  #     - ./nginx/html:/usr/share/nginx/html
   nodejs:
     image: node
     container_name: node-for-react
