@@ -6,7 +6,6 @@ import moment from 'moment'
 
 const Chart = ({ staname, param, label, unit, color }) => {
     const [data, setData] = useState([])
-    // const [label, setlabel] = useState([])
     console.log(staname);
 
     let obj = {
@@ -22,6 +21,7 @@ const Chart = ({ staname, param, label, unit, color }) => {
                 let ts = moment.utc(moment(i.ts2).subtract(7, 'hour')).format()
                 return [ts, Number(i.val) * 1]
             })
+
             setData(a)
         })
     }
@@ -81,8 +81,8 @@ const Chart = ({ staname, param, label, unit, color }) => {
 
         xAxis: {
             type: 'time',
-            boundaryGap: false,
-            axisLine: { onZero: false },
+            // boundaryGap: false,
+            // data: date
         },
         yAxis: {
             name: `${label}`,
@@ -95,8 +95,7 @@ const Chart = ({ staname, param, label, unit, color }) => {
         },
         series: [
             {
-                symbolSize: 0,
-                showSymbol: false,
+                symbol: 'none',
                 type: 'line',
                 data: data,
                 lineStyle: { color: `${color}` }
@@ -107,6 +106,7 @@ const Chart = ({ staname, param, label, unit, color }) => {
     return (
         <div className='shadow-sm p-3 mb-3 bg-body rounded'>
             <div className='card-body'>
+                <button onClick={getData} className='btn btn-light btn-float-right'>refresh</button>
                 <ReactECharts
                     option={option}
                     style={{ height: '400px' }}
