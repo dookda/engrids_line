@@ -104,15 +104,15 @@ const Chart = ({ staname, param, label, unit, color }) => {
     };
 
     return (
-        <div className='shadow-sm p-3 mb-3 bg-body rounded'>
-            <div className='card-body'>
-                <button onClick={getData} className='btn btn-light btn-float-right'>refresh</button>
-                <ReactECharts
-                    option={option}
-                    style={{ height: '400px' }}
-                    opts={{ renderer: 'svg' }}
-                />
-            </div>
+        <div className='card shadow-sm p-3 mb-3 bg-body rounded'>
+
+            <ReactECharts
+                option={option}
+                style={{ height: '400px' }}
+                opts={{ renderer: 'svg' }}
+            />
+            <hr />
+            <button onClick={getData} className='btn btn-light '>refresh</button>
         </div>
     )
 }
