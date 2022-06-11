@@ -1,15 +1,15 @@
 version: '3.3'
 services:
-  # nginx:
-  #   container_name: nginx-for-react
-  #   build: ./nginx
-  #   depends_on:
-  #     - nodejs
-  #     - react
-  #   ports:
-  #     - "80:80"
-  #   volumes:
-  #     - ./nginx/html:/usr/share/nginx/html
+  nginx:
+    container_name: nginx-for-react
+    build: ./nginx
+    depends_on:
+      - nodejs
+      - react
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/html:/usr/share/nginx/html
   nodejs:
     image: node
     container_name: node-for-react
@@ -33,4 +33,6 @@ services:
       - 3000:3000
     volumes:
       - ./reactweb:/home/react/app
+    environment:
+      - NODE_ENV=production
     command: bash -c 'npm i && npm start'
