@@ -35,5 +35,5 @@ services:
       - ./reactweb:/home/react/app
     environment:
       - NODE_ENV=production
-    # command: bash -c 'npm i && npm start'
-    command: bash -c 'npm i && npm i -g serve && npm run build && serve -s build'
+    command: bash -c 'npm i && npm start'
+    # command: bash -c 'npm i && npm i -g serve && npm run build && serve -s build'
